@@ -7,10 +7,24 @@ async function run() {
   if (github.context.eventName === 'workflow_dispatch') {
     core.info('This job was fired by a workflow dispatch.');
     core.info('Using the provided environment name...');
-    repo += core.getInput('environment');
+    const environment = core.getInput('environment');
+    if (environment) {
+      repo += environment;
+    }
+    else {
+      repo += "dev";
+    }
   }
   else {
-    repo += 'prod';
+    if (github.context.ref.includes('main')) {
+      repo += 'prod';
+    }
+    else if (github.context.ref.includes('staging')) {
+      repo += 'staging';
+    }
+    else {
+      repo += "dev";
+    }
   }
 
   const layer = core.getInput('layer');
