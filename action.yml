@@ -7,6 +7,9 @@ inputs:
   layer:
     description: 'backend or frontend, or whatever else'
     required: false
+  environment:
+    description: 'The envrionment you want to deploy to'
+    required: false
 outputs:
   repository: # output will be available to future steps
     description: 'The repository you should push your Docker images into'
