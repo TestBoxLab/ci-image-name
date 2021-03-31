@@ -34,6 +34,8 @@ async function run() {
     }
   }
 
+  core.setOutput('environment', repo);
+
   const layer = core.getInput('layer');
   if (layer) {
     repo += '-' + layer;

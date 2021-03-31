@@ -13,6 +13,8 @@ inputs:
 outputs:
   repository: # output will be available to future steps
     description: 'The repository you should push your Docker images into'
+  environment:
+    description: 'The complete environment name (e.g. testbox-dev)'
 runs:
   using: 'node12'
   main: 'dist/index.js'
