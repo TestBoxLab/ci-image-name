@@ -3,31 +3,25 @@ const github = require('@actions/github');
 
 async function run() {
   let repo = core.getInput('app') + '-';
+  let environment = core.getInput('environment');
 
-  if (github.context.eventName === 'workflow_dispatch') {
-    core.info('This job was fired by a workflow dispatch.');
-    core.info('Using the provided environment name...');
-    const environment = core.getInput('environment');
-    if (environment) {
-      repo += environment;
-    }
-    else {
-      repo += "dev";
-    }
-  }
-  else {
+  if (github.context.eventName !== 'workflow_dispatch') {
     if (github.context.ref.includes('main')) {
-      repo += 'prod';
+      environment = 'prod';
     }
     else if (github.context.ref.includes('staging')) {
-      repo += 'staging';
+      environment = 'staging';
     }
     else {
-      repo += "dev";
+      environment = "dev";
     }
   }
 
-  core.setOutput('environment', repo);
+  core.setOutput('environment', environment);
+    
+  repo += environment;
+
+  core.setOutput('appName', repo);
 
   const layer = core.getInput('layer');
   if (layer) {

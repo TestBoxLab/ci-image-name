@@ -14,7 +14,9 @@ outputs:
   repository: # output will be available to future steps
     description: 'The repository you should push your Docker images into'
   environment:
-    description: 'The complete environment name (e.g. testbox-dev)'
+    description: 'The calculated environment (e.g. dev)'
+  appName:
+    description: 'The calculated name (e.g. onboarding-dev)'
 runs:
   using: 'node12'
   main: 'dist/index.js'
