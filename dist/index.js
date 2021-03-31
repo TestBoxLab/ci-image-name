@@ -27,12 +27,12 @@ async function run() {
     }
   }
 
-  core.info('Final environment is', environment);
+  core.info('Final environment is ' + environment);
   core.setOutput('environment', environment);
     
   repo += environment;
 
-  core.info('Final app name is', repo);
+  core.info('Final app name is ' + repo);
   core.setOutput('appName', repo);
 
   const layer = core.getInput('layer');
@@ -40,7 +40,7 @@ async function run() {
     repo += '-' + layer;
   }
 
-  core.info('Final repository is', repo);
+  core.info('Final repository is ' + repo);
   core.setOutput('repository', repo);
 }
 
