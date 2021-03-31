@@ -1,13 +1,15 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Get ECR Repository'
+description: 'Get the ECR repository to push to for a Github Actionrun'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  app:
+    description: 'The name of your service (testbox, onboarding, etc)'
     required: true
-    default: '1000'
+  layer:
+    description: 'backend or frontend, or whatever else'
+    required: false
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  repository: # output will be available to future steps
+    description: 'The repository you should push your Docker images into'
 runs:
   using: 'node12'
   main: 'dist/index.js'
